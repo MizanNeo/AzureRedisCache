@@ -1,0 +1,21 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/API/EMS.WebAPI/bin
+/src/API/EMS.WebAPI/obj
+/src/API/EMS.WebAPI/Properties/PublishProfiles
+/src/API/EMS.WebAPI/Properties/ServiceDependencies/dksinghemsapi
+/src/API/EMS.WebAPI/Properties/ServiceDependencies/dksinghemsapi - Zip Deploy
+/src/API/EMS.WebAPI/Properties/serviceDependencies.dksinghemsapi.json
+/src/API/EMS.WebAPI/Properties/serviceDependencies.dksinghemsapi.json.user
+/src/API/EMS.WebAPI/Properties/serviceDependencies.json
+*.user
+/src/Core/EMS.Application/bin
+/src/Core/EMS.Application/obj
+/src/Core/EMS.Domain/bin
+/src/Core/EMS.Domain/obj
+/src/Infrastructure/EMS.Infrastructure/bin
+/src/Infrastructure/EMS.Infrastructure/obj
+/src/Infrastructure/EMS.Infrastructure/Migrations
+*.vsidx
