@@ -19,8 +19,4 @@
     <ProjectReference Include="..\EMS.Domain\EMS.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Employee\Queries\" />
-  </ItemGroup>
-
 </Project>

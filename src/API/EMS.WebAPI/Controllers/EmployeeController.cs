@@ -1,5 +1,7 @@
 ﻿using EMS.Application.Features.Employee.Commands.AddEmployee;
 using EMS.Application.Features.Employee.Commands.UpdateEmployeePhoto;
+using EMS.Application.Features.Employee.Queries.GetEmployeeList;
+using EMS.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,20 +14,16 @@ namespace EMS.WebAPI.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IMediator mediator;
-        private readonly IWebHostEnvironment webHost;
-        private readonly IHttpContextAccessor httpContextAccessor;
-        public EmployeeController(IMediator mediator, IWebHostEnvironment webHost, IHttpContextAccessor httpContextAccessor)
+        public EmployeeController(IMediator mediator)
         {
             this.mediator=mediator;
-            this.webHost=webHost;
-            this.httpContextAccessor=httpContextAccessor;
         }
 
         // GET: api/<EmployeeController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<Employee>> Get()
         {
-            return new string[] { webHost.ContentRootPath, httpContextAccessor.HttpContext.Request.Scheme , httpContextAccessor.HttpContext.Request.Host.ToString() , httpContextAccessor.HttpContext.Request.Path };
+            return await mediator.Send(new GetEmployeeListQuery());
         }
 
         // GET api/<EmployeeController>/5
@@ -44,7 +42,7 @@ namespace EMS.WebAPI.Controllers
         }
 
         // PUT api/<EmployeeController>/5
-        [HttpPut("{id}")]
+        [HttpPut("PutProfilePhoto/{id}")]
         public async Task<IActionResult> PutProfilePhoto(int id,IFormFile profilePhoto)
         {
             if(profilePhoto != null && id>0)
@@ -53,13 +51,11 @@ namespace EMS.WebAPI.Controllers
                 {
                     UpdatePhotoCommand photoCommand = new UpdatePhotoCommand() { Id=id,FileName=profilePhoto.FileName, ProfilePhoto = stream};
                     var response = await mediator.Send(photoCommand);
+                    if (response.Succeeded) return Ok(response);
+                    else BadRequest(response);
                 }
-                return Ok();
             }
-            else
-            {
-                return BadRequest();
-            }
+            return BadRequest();
         }
 
         // DELETE api/<EmployeeController>/5

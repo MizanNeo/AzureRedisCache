@@ -27,14 +27,17 @@ namespace EMS.Infrastructure.Repositories
                 SqlDbType = System.Data.SqlDbType.Int,
                 Direction = System.Data.ParameterDirection.Output,
             };
-            await dbContext.Database.ExecuteSqlRawAsync("[dbo].AddEmployee @EmployeeName,@Email,@Mobile,@BirthDate,@JoinDate,@DepartmentId,@Salary,@ReturnValue OUTPUT", parameters: new[] { parameterReturn,
+            await dbContext.Database.ExecuteSqlRawAsync("[dbo].AddEmployee @EmployeeName,@Email,@Mobile,@BirthDate,@JoinDate,@DepartmentId,@Salary,@Pan,@Gender,@PassportNumber,@ReturnValue OUTPUT", parameters: new[] { parameterReturn,
                 new SqlParameter("@EmployeeName",employee.EmployeeName),
                 new SqlParameter("@Email",employee.Email),
                 new SqlParameter("@Mobile",employee.Mobile),
                 new SqlParameter("@BirthDate",employee.BirthDate),
                 new SqlParameter("@JoinDate",employee.JoinDate),
                 new SqlParameter("@DepartmentId",employee.DepartmentId),
-                new SqlParameter("@Salary",employee.Salary)
+                new SqlParameter("@Salary",employee.Salary),
+                new SqlParameter("@Pan",employee.Pan),
+                new SqlParameter("@Gender",employee.Gender),
+                new SqlParameter("@PassportNumber",employee.PassportNumber)
             });
 
             return (int)parameterReturn.Value;

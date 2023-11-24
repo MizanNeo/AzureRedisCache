@@ -19,3 +19,4 @@
 /src/Infrastructure/EMS.Infrastructure/obj
 /src/Infrastructure/EMS.Infrastructure/Migrations
 *.vsidx
+/.vs

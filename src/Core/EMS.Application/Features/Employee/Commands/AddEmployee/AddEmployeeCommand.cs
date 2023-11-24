@@ -18,6 +18,6 @@ namespace EMS.Application.Features.Employee.Commands.AddEmployee
         public int DepartmentId { get; set; }
         public double Salary { get; set; }
         public string Pan { get; set; }
-        public string Passport { get; set; }
+        public string PassportNumber { get; set; }
     }
 }
